@@ -1,0 +1,101 @@
+% ============================================
+% APPROVAL SHEET
+% ============================================	
+\newpage 
+\cleardoublepage  % or \clearpage to ensure we're on the new page
+\phantomsection  % Creates anchor for hyperref
+
+\frontmatterpagenumbers % ===============>>>>>> Starting page number with roman numerals
+
+\thispagestyle{empty}  % This "empty" remove pagenumber, change to "plain" to add pagenumber
+
+\addcontentsline{toc}{chapter}{Lembar Pengesahan} % Put in to ToC
+
+%\vspace*{0cm}  % this make top margin worked normally, You can use negative numbers to make it higher.
+\begin{center}
+    {\bfseries APPROVAL SHEET\\[1\baselineskip]} % Optional title, you can delete this line
+    {\LARGE\bfseries \thesistitle\par}    
+    {\large	\department\\ Graduate School, \university\par}
+    
+    \vspace{1cm}
+    
+    {\Large {\bfseries \thesisauthor }\\[1\baselineskip]} 
+    Supervised by \supervisor\par
+    
+    \vspace{1cm}
+    
+    {Doctoral or Master thesis submitted in partial fulfillment of the requirements for the degree of \textbf{\degree} in Engineering World\par}
+\end{center}
+\vspace{1cm}
+
+\noindent {\Large Committee in Charge:\par}
+
+%\noindent \rule{10cm}{0.4pt}\\ Dr. Advisor Name, Chair\\ 	\department \\[2\baselineskip]
+%\noindent \rule{10cm}{0.4pt}\\ Dr. Advisor Name, Chair\\ 	\department 
+
+\begin{flushright}	
+\rightskip=1.1cm  % Add indent from right edge
+\supervisor, Thesis Advisor 		\hspace{1.5cm}\rule{10em}{0.4pt}\\[1.1\baselineskip] 	
+Another Professor, Thesis Advisor 	\hspace{1.5cm}\rule{10em}{0.4pt}\\[1.1\baselineskip] 	
+A Faculty, Member 					\hspace{1.5cm}\rule{10em}{0.4pt}\\[1.1\baselineskip] 	
+Another Faculty, Member 			\hspace{1.5cm}\rule{10em}{0.4pt}\\[1.1\baselineskip] 	
+A Third Faculty, Member 			\hspace{1.5cm}\rule{10em}{0.4pt}\\[1.1\baselineskip]	
+\end{flushright}
+
+\vfill
+
+\noindent
+
+\begin{center} 
+    \textbf{\university} \\ Date of Approval: \approvaldate
+\end{center}
+
+% ============================================
+% ACKNOWLEDGMENTS
+% ============================================	
+\newpage
+\chapter*{Acknowledgments}
+\addcontentsline{toc}{chapter}{Ucapan Terima Kasih} % Put in to ToC
+
+Your acknowledgments go here. Thank those who have supported you throughout your research and writing process.
+
+% ============================================
+% ABSTRACT
+% ============================================	
+\newpage
+\cleardoublepage  % or \clearpage to ensure we're on the new page
+\phantomsection  % Creates anchor for hyperref
+\addcontentsline{toc}{chapter}{Abstrak} % Put in to ToC
+\vspace*{0cm}  % this make top margin worked normally, You can use negative numbers to make it higher.
+\begin{center}
+    {\Large\bfseries \thesistitle\par}    
+    {\large	\department\\ Graduate School, \university}\\[1\baselineskip]
+    {\large {\bfseries \thesisauthor }\\[1\baselineskip] Supervised by \supervisor}\\[3\baselineskip]
+    {\LARGE {\bfseries ABSTRACT }}
+\end{center}
+
+Your abstract goes here. This should be a concise summary of your dissertation, typically 150-350 words, describing the problem, methodology, results, and conclusions.
+
+% ============================================
+% TABLE OF CONTENTS
+% ============================================	
+\newpage \cleardoublepage     % or \clearpage for oneside
+\phantomsection               % Create anchor for hyperref
+\tableofcontents	
+%\addcontentsline{toc}{chapter}{Daftar Isi}  % Optional, add this line to  include in ToC
+
+% ============================================
+% LIST OF TABLES
+% ============================================	
+\newpage \cleardoublepage     % or \clearpage for oneside
+\phantomsection               % Create anchor for hyperref
+\listoftables
+\addcontentsline{toc}{chapter}{\listtablename}
+
+% ============================================
+% LIST OF FIGURES
+% ============================================	
+\newpage \cleardoublepage     % or \clearpage for oneside
+\phantomsection               % Create anchor for hyperref
+\listoffigures
+\addcontentsline{toc}{chapter}{\listfigurename}

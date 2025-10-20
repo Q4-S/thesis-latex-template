@@ -1,0 +1,49 @@
+% !TeX program = xelatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     app.tex, to be compiled with xelatex	     %%
+%%   Inspired by Chonnam National University     %%
+%% Support one or two-sided, Korean/Hangeul font %%
+%%      Fully customizable ToC, LoF, LoT		 %%
+%%          Just modify as necessary	         %%	 
+% =================================================
+% IMPORTANT: xelatex NEEDED as default compiler (magic command in first top line tries to use the correct compiler automatically, usually for an offline compiler, but it does not always work well)
+% It is NOT using PDFLaTeX, better you learn how to change the compiler first, for example: from Overleaf menu/settings
+% Alternative compiler: LuaLaTeX (it is based on the packages list activated, such as fontspec, kotex, etc)
+% List of Contents of this template uses Bahasa Indonesia (you can change any detail in setting.tex)
+% FREE to use, modify and distribute anytime, see my github page to contribute
+% Made with dedicated pleasure and love in 2025, by Q. Alief S.
+% Read carefully line-by-line each comment to customize
+% https://github.com/Q4-S/thesis-latex-template
+% =================================================
+
+\documentclass[12pt, a4paper,
+               %openright,
+               oneside]
+               {report}
+% Options: letterpaper, a4paper, legalpaper or custom-size in setting.tex
+% openright only worked for two-sided to make a new chapter always on the right side
+% Options: oneside or twoside (If you want to try twoside, it is better also to activate openright)
+% If you change 'report' to 'book'-twoside, it is almost similar to 'report'-twoside + openright
+
+% === documentclass options explanation ===
+% article: Short papers, journal articles, assignments (no chapters)
+% report: Theses, dissertations, technical reports (has chapters, one-sided default)
+% book: Published books, very long theses (have chapters, two-sided default, left/right pages, no abstract command, have \frontmatter, \mainmatter, \backmatter commands)
+
+% === Note: ===
+% Originally, it was only one tex file, then I divided it to make a clear explanation.
+% Next, you can create some folders or change your own for better file organization using the command: \input, \include, etc
+
+\input{setting.tex}     % ORGANIZE PACKAGES AND STYLES
+
+% =================================================
+%                DOCUMENT BEGINS
+% =================================================
+\begin{document}	
+ \input{covers.tex}       % ALL PAGES without pagenumber
+ \input{frontmatter.tex}  % ALL PAGES {roman pagenumber}
+ \input{mainmatter.tex}   % ALL PAGES [Arabic pagenumber]
+\end{document}
+% =================================================
+%                HAPPY  THESIS :)
+% =================================================

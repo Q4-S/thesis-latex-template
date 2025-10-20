@@ -1,0 +1,245 @@
+% ============================================
+% CHAPTER 1: INTRODUCTION
+% ============================================	
+\newpage \cleardoublepage     % or \clearpage for oneside
+\mainmatterpagenumbers % ===============>>>>>> switch page number to Arabic numerals
+\chapter{Pendahuluan}
+
+한국어 텍스트 \cite{reference1}. This is the introduction to your thesis \cite{reference2}. Here you would discuss the background, motivation, and objectives of your research. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Latar Belakang}
+
+\noindent Provide context for your research problem.
+
+\section{Research Objectives}
+
+State your research questions and objectives clearly.
+
+\section{Thesis Organization}
+
+\noindent Describe how the rest of the thesis is organized.
+
+% ============================================
+% CHAPTER 2: LITERATURE REVIEW
+% ============================================	
+\chapter{Literature Review}
+
+Review relevant prior work in your field.
+
+\section{Theoretical Framework}
+
+Discuss the theoretical foundations of your work.
+
+\section{Related Work}
+
+Survey related research and how your work fits into the existing literature.
+
+% ============================================
+% CHAPTER 3: METHODOLOGY
+% ============================================	
+\chapter{Methodology}
+
+Describe your research methods and approach.
+
+\section{Research Design}
+
+Explain your overall research design.
+
+\section{Data Collection}
+
+Describe how you collected your data.
+
+% Example table
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Column 1 & Column 2 & Column 3 \\
+        \hline
+        Data 1 & Data 2 & Data 3 \\
+        Data 4 & Data 5 & Data 6 \\
+        \hline
+    \end{tabular}
+    \caption{Example table caption table 1}
+    \label{tab:example1}
+\end{table}
+
+\section{Analysis Methods}
+
+Explain your analytical approach.
+\begin{equation}
+    f(x) = \frac{a_1 x^2 + b_1 x + c_1}{a_2 x^2 + b_2 x + c_2}
+\end{equation}
+
+% ============================================
+% CHAPTER 4: RESULTS
+% ============================================	
+\chapter{Results}
+
+Present your findings. 
+
+\section{Main Findings}
+
+Present your primary results.
+
+\subsection{Result Category 1}
+
+Detailed results for category 1. 
+
+% Example figure
+\begin{figure}[ht]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{figure1.png}
+    \rule{0.8\textwidth}{2in}
+    \caption{Placeholder figure using rule images 1}
+    \label{fig:example1}
+\end{figure}
+
+\subsection{Result Category 2}
+
+Detailed results for category 2.
+
+% ============================================
+% CHAPTER 5: DISCUSSION
+% ============================================	
+\chapter{Discussion}
+
+Interpret and discuss your results.
+
+\section{Interpretation of Results}
+
+Explain what your results mean. 
+% Example figure
+\begin{figure}[ht]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{figure1.png}
+    \rule{0.8\textwidth}{1in}
+    \caption{Placeholder figure using rule images 2}
+    \label{fig:example2}
+\end{figure}
+
+\section{Implications and Limitations}
+
+Discuss the implications of your findings and acknowledge the limitations of your study. 
+% Example table
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Column 1 & Column 2 & Column 3 \\
+        \hline
+        Data 1 & Data 2 & Data 3 \\
+        Data 4 & Data 5 & Data 6 \\
+        \hline
+    \end{tabular}
+    \caption{Example table caption table 2}
+    \label{tab:example2}
+\end{table}
+
+% ============================================
+% CHAPTER 6: CONCLUSION
+% ============================================	
+\chapter{Conclusion}
+
+Summarize your work and suggest future directions.
+
+\section{Summary of Findings}
+
+Briefly recap your main findings.
+
+\section{Contributions}
+
+Highlight your contributions to the field.
+
+\section{Future Work}
+
+Suggest directions for future research.
+
+% ============================================
+% BIBLIOGRAPHY
+% ============================================	
+\begin{thebibliography}{99}
+    \addcontentsline{toc}{chapter}{Daftar Pustaka}
+    
+    \bibitem{reference1}
+    Author, A. (Year). \textit{Title of work}. Publisher.
+    
+    \bibitem{reference2}
+    Author, B., \& Author, C. (Year). Title of article. \textit{Journal Name}, \textit{Volume}(Issue), pages.
+    
+    % Add more references as needed
+    
+\end{thebibliography}
+
+% ============================================
+% APPENDICES (Optional)
+% ============================================	
+\appendix	
+% Add commands directly to TOC file to custom prefic in ToC for appendix
+\addtocontents{toc}{\protect\renewcommand{\protect\cftchappresnum}{Apx }}
+\addtocontents{toc}{\protect\setlength{\protect\cftchapnumwidth}{1.6cm}}
+
+\chapter{Additional Data}
+
+Include supplementary material here. 
+
+% Main text uses \setmainfont and \setmainhangulfont
+This is English in Times New Roman. 이것은 바탕체 한글입니다.
+
+% Sans-serif uses \setsansfont and \setsanshangulfont
+\textsf{This is English in Arial. 이것은 맑은 고딕 한글입니다.}
+
+% Monospace uses \setmonofont and \setmonohangulfont
+\texttt{This is code. 이것은 코딩 폰트입니다.}
+
+\chapter{Code Listings}
+
+Include code or other technical details here. This is main font (Times New Roman) - used for body text.
+\textsf{This is sans-serif (Arial) - used for headings.}	
+\texttt{This is monospace (Courier New)-used for code.}	
+\texttt{function hello()\\\{return "world";\}}
+
+{\tiny Tiny text (6pt)}
+
+{\scriptsize Scriptsize text (8pt)}
+
+{\footnotesize Footnotesize text (10pt)}
+
+{\small Small text (11pt)}
+
+\normalsize Normal text (12pt)
+
+{\large Large text (14pt)}
+
+{\Large Large text (17pt)}
+
+{\LARGE LARGE text (20pt)}
+
+{\huge Huge text (25pt)}
+
+{\Huge Huge text (25pt)}
+
+% Custom sizes \fontsize{size}{baseline skip}\selectfont
+{\fontsize{15pt}{18pt}\selectfont Custom 15pt}
+
+{\fontsize{22pt}{26pt}\selectfont Custom 22pt}
+
+{\fontsize{30pt}{36pt}\selectfont Custom 30pt}
+
+% ============================================
+% ABSTRACT in HANGEUL
+% ============================================	
+\newpage	
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{국문초록}
+\vspace*{0cm}
+\begin{center}
+{\LARGE\bfseries (박사 학위 논문 제목) \par}    
+{\large	전남대학교대학원 OO학과}\\[1\baselineskip]
+{\Large {\bfseries 성명 }\\[1\baselineskip] (지도교수 : OOO)}\\[3\baselineskip]
+\end{center}
+
+{\Large \noindent {\bfseries (국문초록) }\par}
+초록을 여기에 입력하세요. 논문의 요약은 일반적으로 150~350단어 분량으로, 문제, 방법론, 결과, 결론을 간결하게 설명해야 합니다.
