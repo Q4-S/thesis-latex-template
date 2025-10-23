@@ -5,11 +5,11 @@
 \usepackage{kotex} 				% kotex to use Korean/Hangeul font, alternative: xeCJK
 % Using 'xeCJK' need to change hangulfont set-command. It is better if you learn manually how to install other fonts if needed. You can manually upload the font files (.ttf or .otf)
 
-% See how Fonts worked in Apendix
+% See how Fonts worked in Apendix, not all Korean font support bold, italic or bold italic
 % === MAIN FONTS (Default body text, paragraphs, normal content) ===
 \setmainfont{Times New Roman}        % English in Times New Roman
-\setmainhangulfont{UnBatang}[        % Korean main font, UnBatang only support bold 
-  %BoldFont = NanumMyeongjo,         % Not all Korean font support bold, italic or bold italic
+\setmainhangulfont{UnBatang}[        % Korean main font
+  %BoldFont = NanumMyeongjo,         % UnBatang only support bold by default
   ItalicFont = NanumMyeongjo,        % You can use other font for italic
   BoldItalicFont = NanumMyeongjo     % Or use same font for bold italic
 ]
@@ -39,6 +39,7 @@
 
 \setlength{\parskip}{0.5cm} 	% Space between paragraphs
 \setlength{\parindent}{0.7cm} 	% Paragraph indentation
+
 % Always indent after chapter, section, or subsection See Chap. 1
 \usepackage{indentfirst} 		% You can deactivate this package or use \noindent only in each first paragraph
 
@@ -47,7 +48,7 @@
 \usepackage{hyperref}
 \usepackage{fancyhdr}
 
-\usepackage{tocloft}			% some setting may conflict to "titlesec" package
+\usepackage{tocloft}			% Some setting may conflict to "titlesec" package
 \usepackage[compact]{titlesec}  % Add [compact] option
 
 %================== SETTING of ToC LoT LoF Appendix=======================
@@ -148,31 +149,33 @@ urlcolor=blue         % Web URLs
 	\setcounter{page}{1}
 }
 
-% Header and footer style, Learn manually by yourself if you want custom it :)
-\pagestyle{fancy}
+% Header and footer style, also for pagenumber. Learn manually by yourself if you want custom it :)
+
+% Plain style for chapter pages
+\fancypagestyle{plain}{        % Requires fancyhdr package
+	\fancyhf{}                 % Clear all            
+	\fancyfoot[C]{\thepage}    % centering page number
+    %\fancyhead[LE,RO]{\thepage}  % Page numbers outer edge
+    %\fancyhead[LO]{\leftmark}    % Chapter name left on odd
+    %\fancyhead[RE]{\rightmark}   % Section name right on even
+	\renewcommand{\headrulewidth}{0pt}   % For chapter pages
+	\renewcommand{\footrulewidth}{0pt}   % For chapter pages
+}
+
+% Configure fancy settings
 \fancyhf{}
 %\fancyhead[C]{\thepage}
 %\fancyhead[LE,RO]{\thepage}
 \fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0pt}   % For normal pages
+\renewcommand{\footrulewidth}{0pt}   % For normal pages
 
-% Plain style for chapter pages
-\fancypagestyle{plain}{
-	\fancyhf{}
-	\fancyfoot[C]{\thepage}
-	%\fancyfoot[LE,RO]{\thepage}
-	\renewcommand{\headrulewidth}{0pt}
-}
+% Apply fancy style for normal pages from  Built-in LaTeX function
+\pagestyle{fancy}
 
-% ================== TITLE PAGE INFORMATION =======================
-\newcommand{\thesistitle}{My Thesis Title Here \\ (한국어)}
-\newcommand{\thesisauthor}{My Name}
-\newcommand{\supervisor}{My Professor}
-\newcommand{\university}{My University Name}
-\newcommand{\department}{My Department of Your Field}
-\newcommand{\degree}{Doctor of Philosophy}
-\newcommand{\submissiondate}{Month Year}
-\newcommand{\approvaldate}{Date-Month-Year}
+%\pagestyle{empty}     % Use empty style (no headers/footers)
+%\pagestyle{plain}     % Use plain style (page numbers only)
+%\pagestyle{headings}  % Use headings style (chapter names in header)
 
 % ========== Optional TOC/LOF/LOT start on right page (twoside) ==========
 \let\oldtableofcontents\tableofcontents
@@ -183,3 +186,13 @@ urlcolor=blue         % Web URLs
 
 \let\oldlistoftables\listoftables
 \renewcommand{\listoftables}{\cleardoublepage\oldlistoftables}
+
+% ================== THESIS INFORMATION VARIABLES =======================
+\newcommand{\thesistitle}{My Thesis Title Here \\ (한국어)}
+\newcommand{\thesisauthor}{My Name}
+\newcommand{\supervisor}{My Professor}
+\newcommand{\university}{My University Name}
+\newcommand{\department}{My Department of Your Field}
+\newcommand{\degree}{Doctor of Philosophy}
+\newcommand{\submissiondate}{Month Year}
+\newcommand{\approvaldate}{Date-Month-Year}
