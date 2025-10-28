@@ -43,15 +43,18 @@
 % Always indent after chapter, section, or subsection See Chap. 1
 \usepackage{indentfirst} 		% You can deactivate this package or use \noindent only in each first paragraph
 
-\usepackage{graphicx}
-\usepackage{amsmath, amssymb}
-\usepackage{hyperref}
-\usepackage{fancyhdr}
+% ================== OTHER PACKAGES =======================
+%\usepackage{graphicx}           % Used to include images and other graphics in your document.
+\usepackage[demo]{graphicx}
 
+\usepackage{amsmath, amssymb}   % Essential for typesetting mathematical formulas and equations and Provides a wide range of additional math symbols.
+
+\usepackage{hyperref}           % adds clickable links and navigation features to your PDF.
+\usepackage{fancyhdr}           % Extensive control of page headers and footers
 \usepackage{tocloft}			% Some setting may conflict to "titlesec" package
 \usepackage[compact]{titlesec}  % Add [compact] option
 
-%================== SETTING of ToC LoT LoF Appendix=======================
+%============= SETTING of ToC LoT LoF Appendix==============
 % Center TOC title
 \renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries}
 \renewcommand{\cftaftertoctitle}{\hfill}

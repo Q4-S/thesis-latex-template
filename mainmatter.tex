@@ -39,6 +39,15 @@ Discuss the theoretical foundations of your work.
 
 Survey-related research and how your work fits into the existing literature.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[draft, width=0.3\textwidth, height=5cm]{nonexistent-image.png}
+    \caption{Figure from graphicx package with demo option}
+    \label{fig:demo}
+\end{figure}
+
+As seen in Figure~\ref{fig:demo}, the `demo` option replaces the actual image with a black rectangle. \textbf{$\backslash$usepackage[demo]{graphicx}}: This line loads the graphicx package and activates its demo option. When demo is enabled, \texttt{$\backslash$includegraphics} commands will not attempt to load actual image files. Even if nonexistent-image.png does not exist, the demo option ensures a placeholder rectangle is generated, allowing you to compile and visualize the layout of your document without requiring the actual image files. This is particularly useful during the document drafting phase to check figure placement and sizing before all images are finalized or available. Other methods, which do not require any package, are illustrated in Figures~\ref {fig:example1} (upper label) and~\ref {fig:example2}.
+
 % ============================================
 % CHAPTER 3: METHODOLOGY
 % ============================================	
@@ -94,10 +103,10 @@ Detailed results for category 1.
 % Example figure
 \begin{figure}[ht]
     \centering
+    \label{fig:example1}
     % \includegraphics[width=0.8\textwidth]{figure1.png}
     \rule{0.8\textwidth}{2in}
-    \caption{Placeholder figure using rule images 1}
-    \label{fig:example1}
+    \caption{Placeholder figure using rule}
 \end{figure}
 
 \subsection{Result Category 2}
@@ -118,8 +127,8 @@ Explain what your results mean.
 \begin{figure}[ht]
     \centering
     % \includegraphics[width=0.8\textwidth]{figure1.png}
-    \rule{0.8\textwidth}{1in}
-    \caption{Placeholder figure using rule images 2}
+    \fbox{\parbox{0.8\textwidth}{\centering\vspace{3in}Figure placeholder}}
+    \caption{Placeholder figure using fbox}
     \label{fig:example2}
 \end{figure}
 
