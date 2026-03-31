@@ -41,13 +41,19 @@
 %                DOCUMENT BEGINS
 % =================================================
 \begin{document}	
-  \ifxelatex\else\begin{CJK}{UTF8}{mj}\fi  % open CJK for pdfLaTeX only
+% Open CJK environment for pdfLaTeX Korean support.
+% In XeLaTeX mode this line is skipped (kotex handles Korean natively).
+% The \begin{CJK} must live here in the document body — NOT in hooks —
+% to avoid "unclosed \begin{CJK} found at close group }" errors.
+\ifxelatex\else\begin{CJK}{UTF8}{mj}\fi
+ 
+  \input{covers.tex}       % ALL PAGES without pagenumber
+  \input{frontmatter.tex}  % ALL PAGES {roman pagenumber}
+  \input{mainmatter.tex}   % ALL PAGES [Arabic pagenumber]
+ 
+% Close CJK environment (pdfLaTeX only)
+\ifxelatex\else\clearpage\end{CJK}\fi
 
-     \input{covers.tex}       % ALL PAGES without pagenumber
-     \input{frontmatter.tex}  % ALL PAGES {roman pagenumber}
-     \input{mainmatter.tex}   % ALL PAGES [Arabic pagenumber]
-
-  \ifxelatex\else\clearpage\end{CJK}\fi     % close CJK for pdfLaTeX only
 \end{document}
 % =================================================
 %                HAPPY  THESIS :)

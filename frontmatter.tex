@@ -14,7 +14,7 @@
 %\vspace*{0cm}  % this make top margin worked normally, You can use negative numbers to make it higher.
 \begin{center}
     {\bfseries APPROVAL SHEET\\[1\baselineskip]} % Optional title, you can delete this line
-    {\LARGE\bfseries \thesistitle\par}    
+    {\LARGE\bfseries \thesistitleEn\par}    
     {\large	\department\\ Graduate School, \university\par}
     
     \vspace{1cm}
@@ -53,11 +53,17 @@ A Third Faculty, Member 			\hspace{1.5cm}\rule{10em}{0.4pt}\\[1.1\baselineskip]
 % ============================================
 % ACKNOWLEDGMENTS
 % ============================================	
-\newpage
-\chapter*{Acknowledgments}
-\addcontentsline{toc}{chapter}{Ucapan Terima Kasih} % Put in to ToC
+%\newpage
+\vspace*{-1.3cm}
+\chapter*{Dedication}
+\addcontentsline{toc}{chapter}{Ucapan Terima Kasih } % Put in to ToC
 
-Your acknowledgments go here. Thank those who have supported you throughout your research and writing process.
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+    \textit{To my family and friends}
+\end{center}
+\vspace*{\fill} 
 
 % ============================================
 % ABSTRACT
@@ -65,10 +71,10 @@ Your acknowledgments go here. Thank those who have supported you throughout your
 \newpage
 \cleardoublepage  % or \clearpage to ensure we're on the new page
 \phantomsection  % Creates anchor for hyperref
-\addcontentsline{toc}{chapter}{Abstrak} % Put in to ToC
+\addcontentsline{toc}{chapter}{Abstrak Indonesia} % Put in to ToC
 \vspace*{0cm}  % this make top margin worked normally, You can use negative numbers to make it higher.
 \begin{center}
-    {\Large\bfseries \thesistitle\par}    
+    {\Large\bfseries \thesistitleEn\par}    
     {\large	\department\\ Graduate School, \university}\\[1\baselineskip]
     {\large {\bfseries \thesisauthor }\\[1\baselineskip] Supervised by \supervisorEn}\\[3\baselineskip]
     {\LARGE {\bfseries ABSTRACT }}
@@ -76,21 +82,15 @@ Your acknowledgments go here. Thank those who have supported you throughout your
 
 Your abstract goes here. This should be a concise summary of your dissertation, typically 150-350 words, describing the problem, methodology, results, and conclusions.
 
+\noindent\textbf{Keywords:} first keyword, second keyword, ...
+
 % ============================================
 % TABLE OF CONTENTS
 % ============================================	
 \newpage \cleardoublepage     % or \clearpage for oneside
 \phantomsection               % Create anchor for hyperref
 \tableofcontents	
-%\addcontentsline{toc}{chapter}{Daftar Isi}  % Optional, add this line to  include in ToC
-
-% ============================================
-% LIST OF TABLES
-% ============================================	
-\newpage \cleardoublepage     % or \clearpage for oneside
-\phantomsection               % Create anchor for hyperref
-\listoftables
-\addcontentsline{toc}{chapter}{\listtablename}
+\addcontentsline{toc}{chapter}{\contentsname}  % Optional, add this line to  include in ToC
 
 % ============================================
 % LIST OF FIGURES
@@ -99,3 +99,11 @@ Your abstract goes here. This should be a concise summary of your dissertation, 
 \phantomsection               % Create anchor for hyperref
 \listoffigures
 \addcontentsline{toc}{chapter}{\listfigurename}
+
+% ============================================
+% LIST OF TABLES
+% ============================================	
+\newpage \cleardoublepage     % or \clearpage for oneside
+\phantomsection               % Create anchor for hyperref
+\listoftables
+\addcontentsline{toc}{chapter}{\listtablename}

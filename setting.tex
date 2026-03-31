@@ -15,61 +15,56 @@
 % ============================================
 
 \ifxelatex
-  % ---- XeLaTeX / LuaLaTeX block ----------------------------------------
-  % Requires: compile with xelatex or lualatex
-  % Overleaf: Menu → Compiler → XeLaTeX  (paid tier recommended for long docs)
+% ---- XeLaTeX / LuaLaTeX block ----------------------------------------
+% Compiler: xelatex or lualatex
+% Overleaf:  Menu → Compiler → XeLaTeX
 
-  \usepackage{fontspec}         % OpenType font selection
-  \usepackage{kotex}            % Korean/Hangeul support (uses fontspec internally)
-  % Alternative: \usepackage{xeCJK}  — if you switch, update hangulfont commands below
+  \usepackage{fontspec}   % OpenType font selection (XeLaTeX/LuaLaTeX only)
+  \usepackage{kotex}      % Korean support — uses fontspec internally
+                          % Alternative: xeCJK (requires different font commands)
 
-  % --- MAIN FONTS (body text, paragraphs) ---
+  % MAIN font — body text and paragraphs
   \setmainfont{Times New Roman}
   \setmainhangulfont{UnBatang}[
-    % BoldFont     = NanumMyeongjo,   % UnBatang supports bold natively
+    % BoldFont     = NanumMyeongjo,  % UnBatang has native bold
     ItalicFont     = NanumMyeongjo,
     BoldItalicFont = NanumMyeongjo
   ]
 
-  % --- SANS-SERIF FONTS (headers, titles, captions)  \textsf{} ---
+  % SANS-SERIF font — headings, titles, captions   usage: \textsf{}
   \setsansfont{Arial}
   \setsanshangulfont{NanumGothic}
 
-  % --- MONOSPACE FONTS (code, URLs, terminal text)   \texttt{} ---
+  % MONOSPACE font — code, URLs, terminal text      usage: \texttt{}
   \setmonofont{Courier New}
   \setmonohangulfont{NanumGothicCoding}
 
 \else
-  % ---- pdfLaTeX block --------------------------------------------------
-  % Requires: compile with pdflatex
-  % Overleaf: Menu → Compiler → pdfLaTeX  (default, works on free tier)
-  % Note: Korean text is wrapped with \ko{} defined below.
-  %       For large Korean blocks use \begin{CJK}{UTF8}{mj}...\end{CJK}
+% ---- pdfLaTeX block --------------------------------------------------
+% Compiler: pdflatex
+% Overleaf:  Menu → Compiler → pdfLaTeX  (default, works on free tier)
+%
+% Since \xelatexfalse means we are intentionally using pdfLaTeX,
+% no engine detection needed — just load packages directly.
+% No nested \if blocks here to avoid mismatched \fi errors.
 
-  % Load inputenc only when actually running pdfLaTeX.
-  % XeLaTeX/LuaLaTeX handle UTF-8 natively — loading inputenc under those
-  % engines triggers: "inputenc package ignored with utf8 based engines."
-  % The \iftex check below prevents that warning entirely.
-  \usepackage{iftex}            % provides \ifPDFTeX, \ifXeTeX, \ifLuaTeX
-  \ifPDFTeX
-    \usepackage[utf8]{inputenc} % UTF-8 input encoding (pdfLaTeX only)
-    \usepackage[T1]{fontenc}    % output font encoding  (pdfLaTeX only)
-  \fi
+  \usepackage[utf8]{inputenc}   % UTF-8 input encoding
+  \usepackage[T1]{fontenc}      % output font encoding
 
   % Korean support via CJKutf8
-  % Available CJK font families for Korean:
-  %   mj  = Myungjoh (명조, serif — closest to UnBatang)
-  %   gr  = Gothic   (고딕, sans-serif — closest to NanumGothic)
-  %   bm  = Batang   (바탕)
+  % Font families available for Korean:
+  %   mj = 명조 Myungjoh  (serif,  closest to UnBatang)
+  %   gr = 고딕 Gothic    (sans,   closest to NanumGothic)
+  %   bm = 바탕 Batang
   \usepackage{CJKutf8}
 
-  % English font substitutions (visually close to XeLaTeX versions)
-  \usepackage{mathptmx}               % Times New Roman equivalent  (main/serif)
-  \usepackage[scaled=0.92]{helvet}    % Arial/Helvetica equivalent  (sans-serif)
-  \usepackage{courier}                % Courier New                 (monospace)
+  % English font substitutions (closest pdfLaTeX equivalents)
+  \usepackage{mathptmx}              % Times New Roman (main/serif)
+  \usepackage[scaled=0.92]{helvet}   % Helvetica/Arial  (sans-serif)
+  \usepackage{courier}               % Courier New      (monospace)
 
-  % Convenience macro: switch to Gothic (sans) Korean inside text
-  % Usage: \ko{한국어 텍스트}  — switches CJK font to gothic for that span
+  % \ko{} — convenience macro for inline Gothic Korean
+  % usage: \ko{이것은 고딕체입니다}
   \newcommand{\ko}[1]{{\CJKfamily{gr}#1}}
 
 \fi
@@ -83,7 +78,7 @@
 % --- Page geometry ---
 \usepackage[
   % paperwidth=21cm,    % uncomment for custom paper size
-  % paperheight=29.7cm, % uncomment for custom paper size
+  % paperheight=29.7cm,
   top=2.5cm,
   bottom=2.5cm,
   left=3.0cm,
@@ -150,17 +145,22 @@
 % Chapter number prefix/suffix in TOC
 % NOTE: \cftchappresnum shows in TOC only.
 %       The heading prefix is controlled separately by \chaptername below.
-\renewcommand{\cftchappresnum}{Chapter }   % prefix in TOC  e.g. "Chapter 1."
+
+\ifxelatex % Chapter numbering — Korean only in XeLaTeX mode
+  \renewcommand{\cftchappresnum}{제-}   % prefix in TOC  e.g. "제-1."
+\else % Chapter numbering using pdflatex
+  \renewcommand{\cftchappresnum}{Ch. }   % prefix in TOC  e.g. "Ch. 1."
+\fi
+
+% Suffix after number of chapter or sub-chapter (section or subsection)
 \renewcommand{\cftchapaftersnum}{.}
 \renewcommand{\cftsecaftersnum}{.}
 \renewcommand{\cftsubsecaftersnum}{.}
 
-% Column widths in TOC
-\setlength{\cftchapnumwidth}{2.6cm}
-\setlength{\cftsecnumwidth}{1.3cm}
-\setlength{\cftsubsecnumwidth}{1.6cm}
-
-% for appendix look at mainmatter to this code: \addtocontents{toc}{\protect\setlength{\protect\cftchapnumwidth}{1.1cm}}
+% Spacing after number of chapter or sub-chapter (section or subsection) from left page
+\setlength{\cftchapnumwidth}{1.5cm}
+\setlength{\cftsecnumwidth}{1.2cm}
+\setlength{\cftsubsecnumwidth}{1.3cm}
 
 % Indentation in TOC
 \setlength{\cftchapindent}{0em}
@@ -177,12 +177,15 @@
 \setlength{\cfttabnumwidth}{3em}
 \setlength{\cftbeforetabskip}{2pt}
 
+% Edit frontmatter.tex to disable showing own page of LoC, LoF, or LoT
 % Section-list display names  ← edit these to match your language
-\renewcommand{\contentsname}{Table of Contents}   % or 목차
+\renewcommand{\contentsname}{List of Contents}   % or 목차
 \renewcommand{\listfigurename}{List of Figures}   % or 그림 목록
 \renewcommand{\listtablename}{List of Tables}     % or 표 목록
 \renewcommand{\appendixname}{Appendix}            % or 부록
 
+% NOTE: pdflatex in overleaf free tier by default NOT suported Korean Fonts.
+% if you want full features, better use XeLatex especially for Number of ToC, LoF and LoT.
 
 % ============================================
 % CHAPTER & SECTION TITLE FORMATTING
@@ -197,9 +200,24 @@
   {}
 
 % Chapter numbering format shown in headings
-% Example output: "제: 1장  Chapter Title"
-\renewcommand{\chaptername}{제:}                     % prefix before number
-\renewcommand{\thechapter}{\arabic{chapter}장}       % suffix after number
+\ifxelatex % Chapter numbering — Korean only in XeLaTeX mode
+  % Example output: "제-1장  Chapter Title"
+  \renewcommand{\chaptername}{제-}                     % prefix before number
+  \renewcommand{\thechapter}{\arabic{chapter}장}       % suffix 장 after number
+\else % Chapter numbering using pdflatex
+  \renewcommand{\chaptername}{Chapter }
+  \renewcommand{\thechapter}{\arabic{chapter}}
+\fi
+
+% Centering chapter titles and make it one line
+\usepackage{xcolor}  % needed for \color{} in chapter title format
+\titleformat
+	{\chapter} % command to format
+	[block] % shape: hang, display, block, frame etc
+	{\bfseries \centering}  % format of whole number label + chapter title text
+	{\large \color{black!80} \MakeUppercase{\chaptertitlename \thechapter} \\} % format of number label only, ex: add . or enter new line \\
+	{0cm} % separation number label - chapter title text
+	{\sffamily \Huge } % Format for the title text only
 
 % Section / subsection heading styles
 \titleformat{\section}{\sffamily\large\bfseries}{\thesection.}{1em}{}
@@ -216,7 +234,7 @@
 % HYPERLINK COLORS
 % ============================================
 \hypersetup{
-  colorlinks = true,
+  colorlinks = true,   % no colored links box
   linkcolor  = blue,   % TOC, internal cross-references
   citecolor  = blue,   % \cite{}
   urlcolor   = blue    % \url{} and \href{}
