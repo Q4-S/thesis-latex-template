@@ -117,7 +117,7 @@
 \usepackage[compact]{titlesec}
 
 % --- Bibliography ---
-\usepackage[style=numeric]{biblatex}   % styles: numeric, alphabetic, authoryear…
+\usepackage[style=numeric, sorting=none, backend=biber]{biblatex}   % styles: numeric, alphabetic, authoryear…
 \addbibresource{reference.bib}
 
 % --- Block comments ---
@@ -137,10 +137,10 @@
 \renewcommand{\cftafterlottitle}{\hfill}
 
 % Chapter entries in TOC
-\renewcommand{\cftchapfont}{\bfseries}
-\renewcommand{\cftchapdotsep}{\cftdotsep}
-\setlength{\cftbeforechapskip}{5pt}
-\renewcommand{\cftchappagefont}{\bfseries}
+\renewcommand{\cftchapfont}{\bfseries}           % Bold chapter entries
+\renewcommand{\cftchapdotsep}{\cftdotsep}        % Add dots for chapters
+\setlength{\cftbeforechapskip}{5pt}              % Space between chapters
+\renewcommand{\cftchappagefont}{\bfseries}       % Bold page numbers
 
 % Chapter number prefix/suffix in TOC
 % NOTE: \cftchappresnum shows in TOC only.
@@ -185,7 +185,7 @@
 \renewcommand{\appendixname}{Appendix}            % or 부록
 
 % NOTE: pdflatex in overleaf free tier by default NOT suported Korean Fonts.
-% if you want full features, better use XeLatex especially for Number of ToC, LoF and LoT.
+% if you want full features, better use XeLatex especially for Korean Number of ToC, LoF and LoT.
 
 % ============================================
 % CHAPTER & SECTION TITLE FORMATTING

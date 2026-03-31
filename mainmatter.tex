@@ -127,7 +127,7 @@ Explain what your results mean.
 \begin{figure}[ht]
     \centering
     % \includegraphics[width=0.8\textwidth]{figure1.png}
-    \fbox{\parbox{0.8\textwidth}{\centering\vspace{3in}Figure placeholder}}
+    \fbox{\parbox[c][1cm][c]{0.5\textwidth}{\centering\vspace{3in}Figure placeholder}}
     \caption{Placeholder figure using fbox}
     \label{fig:example2}
 \end{figure}
@@ -186,7 +186,8 @@ Suggest directions for future research.
 \end{thebibliography}
 \end{comment}
 
-\printbibliography     % list from file reference.bib and update setting.tex to configure
+% list from file reference.bib and update setting.tex to configure
+\printbibliography[heading=bibintoc, title={Daftar Pustaka}]  % Put in to ToC
 
 % ============================================
 % APPENDICES (Optional)
