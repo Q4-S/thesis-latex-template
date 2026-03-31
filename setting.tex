@@ -1,192 +1,283 @@
 % ============================================
-% CUSTOMIZATION SECTION - EDIT THESE SETTINGS & REQUIRED PACKAGES
+% COMPILER SWITCH — EDIT THIS ONE LINE ONLY
 % ============================================
-\usepackage{fontspec}			% use compiler XeLaTeX/LuaLaTeX
-\usepackage{kotex} 				% kotex to use Korean/Hangeul font, alternative: xeCJK
-% Using 'xeCJK' need to change hangulfont set-command. It is better if you learn manually how to install other fonts if needed. You can manually upload the font files (.ttf or .otf)
+% Set to 'true'  → XeLaTeX / LuaLaTeX mode  (better Korean fonts, local compile)
+% Set to 'false' → pdfLaTeX mode             (faster, works on Overleaf free tier)
+%
+\newif\ifxelatex
+\xelatexfalse   % <--- CHANGE THIS: \xelatextrue  or  \xelatexfalse
+%
+% ============================================
 
-% See how Fonts worked in Apendix, not all Korean font support bold, italic or bold italic
-% === MAIN FONTS (Default body text, paragraphs, normal content) ===
-\setmainfont{Times New Roman}        % English in Times New Roman
-\setmainhangulfont{UnBatang}[        % Korean main font
-  %BoldFont = NanumMyeongjo,         % UnBatang only support bold by default
-  ItalicFont = NanumMyeongjo,        % You can use other font for italic
-  BoldItalicFont = NanumMyeongjo     % Or use same font for bold italic
-]
 
-% === SANS-SERIF FONTS (For Headers, titles, captions ), How to use : \textsf{} ===
-\setsansfont{Arial}                 % English sans-serif
-\setsanshangulfont{NanumGothic}   	% Korean sans-serif
+% ============================================
+% FONT & KOREAN SUPPORT  (compiler-dependent)
+% ============================================
 
-% === MONOSPACE FONTS (For code, URLs, technical text), How to use : \texttt{}  ===
-\setmonofont{Courier New}           	% English monospace
-\setmonohangulfont{NanumGothicCoding}   % Korean monospace
+\ifxelatex
+  % ---- XeLaTeX / LuaLaTeX block ----------------------------------------
+  % Requires: compile with xelatex or lualatex
+  % Overleaf: Menu → Compiler → XeLaTeX  (paid tier recommended for long docs)
 
-% ================== SETTING MARGIN =======================
-\usepackage[                % you must remove predefined paper size from "documentclass" if activated custom papersize
-	%paperwidth=21cm,       % Custom paper width
-	%paperheight=29.7cm,    % Custom paper height
-	top=2.5cm,
-	bottom=2.5cm,
-	left=3.0cm,
-	right=3.0cm,
-	bindingoffset=0.5cm 	% Needed for printing document
+  \usepackage{fontspec}         % OpenType font selection
+  \usepackage{kotex}            % Korean/Hangeul support (uses fontspec internally)
+  % Alternative: \usepackage{xeCJK}  — if you switch, update hangulfont commands below
+
+  % --- MAIN FONTS (body text, paragraphs) ---
+  \setmainfont{Times New Roman}
+  \setmainhangulfont{UnBatang}[
+    % BoldFont     = NanumMyeongjo,   % UnBatang supports bold natively
+    ItalicFont     = NanumMyeongjo,
+    BoldItalicFont = NanumMyeongjo
+  ]
+
+  % --- SANS-SERIF FONTS (headers, titles, captions)  \textsf{} ---
+  \setsansfont{Arial}
+  \setsanshangulfont{NanumGothic}
+
+  % --- MONOSPACE FONTS (code, URLs, terminal text)   \texttt{} ---
+  \setmonofont{Courier New}
+  \setmonohangulfont{NanumGothicCoding}
+
+\else
+  % ---- pdfLaTeX block --------------------------------------------------
+  % Requires: compile with pdflatex
+  % Overleaf: Menu → Compiler → pdfLaTeX  (default, works on free tier)
+  % Note: Korean text is wrapped with \ko{} defined below.
+  %       For large Korean blocks use \begin{CJK}{UTF8}{mj}...\end{CJK}
+
+  % Load inputenc only when actually running pdfLaTeX.
+  % XeLaTeX/LuaLaTeX handle UTF-8 natively — loading inputenc under those
+  % engines triggers: "inputenc package ignored with utf8 based engines."
+  % The \iftex check below prevents that warning entirely.
+  \usepackage{iftex}            % provides \ifPDFTeX, \ifXeTeX, \ifLuaTeX
+  \ifPDFTeX
+    \usepackage[utf8]{inputenc} % UTF-8 input encoding (pdfLaTeX only)
+    \usepackage[T1]{fontenc}    % output font encoding  (pdfLaTeX only)
+  \fi
+
+  % Korean support via CJKutf8
+  % Available CJK font families for Korean:
+  %   mj  = Myungjoh (명조, serif — closest to UnBatang)
+  %   gr  = Gothic   (고딕, sans-serif — closest to NanumGothic)
+  %   bm  = Batang   (바탕)
+  \usepackage{CJKutf8}
+
+  % English font substitutions (visually close to XeLaTeX versions)
+  \usepackage{mathptmx}               % Times New Roman equivalent  (main/serif)
+  \usepackage[scaled=0.92]{helvet}    % Arial/Helvetica equivalent  (sans-serif)
+  \usepackage{courier}                % Courier New                 (monospace)
+
+  % Convenience macro: switch to Gothic (sans) Korean inside text
+  % Usage: \ko{한국어 텍스트}  — switches CJK font to gothic for that span
+  \newcommand{\ko}[1]{{\CJKfamily{gr}#1}}
+
+\fi
+% ---- End of compiler-dependent block ------------------------------------
+
+
+% ============================================
+% SHARED PACKAGES  (work with both compilers)
+% ============================================
+
+% --- Page geometry ---
+\usepackage[
+  % paperwidth=21cm,    % uncomment for custom paper size
+  % paperheight=29.7cm, % uncomment for custom paper size
+  top=2.5cm,
+  bottom=2.5cm,
+  left=3.0cm,
+  right=3.0cm,
+  bindingoffset=0.5cm   % extra inner margin for printing/binding
 ]{geometry}
 
-% Line Spacing
+% --- Spacing ---
 \usepackage{setspace}
-\singlespacing% options: \singlespacing, \onehalfspacing, \doublespacing, \setstretch{1.25} % custom-spacing
+\singlespacing   % options: \singlespacing \onehalfspacing \doublespacing \setstretch{1.25}
 
-\setlength{\parskip}{0.5cm} 	% Space between paragraphs
-\setlength{\parindent}{0.7cm} 	% Paragraph indentation
+\setlength{\parskip}{0.5cm}     % space between paragraphs
+\setlength{\parindent}{0.7cm}   % paragraph indentation
 
-% Always indent after chapter, section, or subsection See Chap. 1
-\usepackage{indentfirst} 		% You can deactivate this package or use \noindent only in each first paragraph
+\usepackage{indentfirst}        % indent first paragraph after headings too
+                                % remove this package to disable that behavior
 
-% ================== OTHER PACKAGES =======================
-%\usepackage{graphicx}           % Used to include images and other graphics in your document.
-\usepackage[demo]{graphicx}
+% --- Graphics ---
+% \usepackage{graphicx}         % normal mode — use real image files
+\usepackage[demo]{graphicx}     % demo mode   — black rectangles as placeholders
+                                % switch to the line above once images are ready
 
-\usepackage{amsmath, amssymb}   % Essential for typesetting mathematical formulas and equations and Provides a wide range of additional math symbols.
+% --- Math ---
+\usepackage{amsmath, amssymb}   % equations, math symbols
 
-\usepackage{hyperref}           % adds clickable links and navigation features to your PDF.
-\usepackage{fancyhdr}           % Extensive control of page headers and footers
-\usepackage{tocloft}			% Some setting may conflict to "titlesec" package
-\usepackage[compact]{titlesec}  % Add [compact] option
+% --- Navigation & Links ---
+\usepackage{hyperref}           % clickable links, PDF bookmarks
+
+% --- Headers & Footers ---
+\usepackage{fancyhdr}
+
+% --- Table of Contents formatting ---
+\usepackage{tocloft}            % note: can conflict with titlesec in edge cases
+
+% --- Chapter / Section title formatting ---
+\usepackage[compact]{titlesec}
+
+% --- Bibliography ---
+\usepackage[style=numeric]{biblatex}   % styles: numeric, alphabetic, authoryear…
+\addbibresource{reference.bib}
+
+% --- Block comments ---
+\usepackage{comment}            % \begin{comment}…\end{comment}
 
 
-\usepackage[style=numeric]{biblatex}    % setting bibliografi style (alphabetic, authoryear, authortitle,numeric etc)
-\addbibresource{reference.bib}          % calling file .bib
+% ============================================
+% TABLE OF CONTENTS / LOF / LOT FORMATTING
+% ============================================
 
-\usepackage{comment}            % comment or uncoment big area contents using \begin{comment} contents \end{comment}
-
-
-%============= SETTING of ToC LoT LoF Appendix==============
-% Center TOC title
+% Center section-list titles
 \renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries}
 \renewcommand{\cftaftertoctitle}{\hfill}
-
-% Center LOF title
 \renewcommand{\cftloftitlefont}{\hfill\Huge\bfseries}
 \renewcommand{\cftafterloftitle}{\hfill}
-
-% Center LOT title
 \renewcommand{\cftlottitlefont}{\hfill\Huge\bfseries}
 \renewcommand{\cftafterlottitle}{\hfill}
 
-% Customize Table of Content (TOC) appearance
-\renewcommand{\cftchapfont}{\bfseries}           % Bold chapter entries
-\renewcommand{\cftchapdotsep}{\cftdotsep}        % Add dots for chapters
-\setlength{\cftbeforechapskip}{5pt}              % Space between chapters
-\renewcommand{\cftchappagefont}{\bfseries}       % Bold page numbers
+% Chapter entries in TOC
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+\setlength{\cftbeforechapskip}{5pt}
+\renewcommand{\cftchappagefont}{\bfseries}
 
-\renewcommand{\cftchappresnum}{Bab } 	% Add "Chapter " prefix before chapter numbers in TOC
-\renewcommand{\cftchapaftersnum}{.} 	% Add . after chapter number
-\renewcommand{\cftsecaftersnum}{.} 	    % Add . after section number
-\renewcommand{\cftsubsecaftersnum}{.} 	% Add . after subsection number
-\setlength{\cftchapnumwidth}{2cm} 		% Adjust spacing to accommodate the prefix for Chapter
-\setlength{\cftsecnumwidth}{1.6cm}		% Adjust spacing to accommodate the prefix for Section
-\setlength{\cftsubsecnumwidth}{1.7cm}	% Adjust spacing to accommodate the prefix For sub-Section
+% Chapter number prefix/suffix in TOC
+% NOTE: \cftchappresnum shows in TOC only.
+%       The heading prefix is controlled separately by \chaptername below.
+\renewcommand{\cftchappresnum}{Chapter }   % prefix in TOC  e.g. "Chapter 1."
+\renewcommand{\cftchapaftersnum}{.}
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
 
-\setlength{\cftchapindent}{0em}		% indent for Chapter
-\setlength{\cftsecindent}{1em}		% indent for Section
-\setlength{\cftsubsecindent}{2em}	% indent for sub-Section
+% Column widths in TOC
+\setlength{\cftchapnumwidth}{2.6cm}
+\setlength{\cftsecnumwidth}{1.3cm}
+\setlength{\cftsubsecnumwidth}{1.6cm}
 
-% Customize List of Figures (LoF) appearance
-\setlength{\cftfigindent}{0em}        % Indent from left
-\setlength{\cftfignumwidth}{3em}      % Width for "Figure 1.1"
-\setlength{\cftbeforefigskip}{2pt}    % Space between entries
+% for appendix look at mainmatter to this code: \addtocontents{toc}{\protect\setlength{\protect\cftchapnumwidth}{1.1cm}}
 
-% Customize List of Tables (LoT) appearance
-\setlength{\cfttabindent}{0em}        % Indent from left
-\setlength{\cfttabnumwidth}{3em}      % Width for "Table 1.1"
-\setlength{\cftbeforetabskip}{2pt}    % Space between entries
+% Indentation in TOC
+\setlength{\cftchapindent}{0em}
+\setlength{\cftsecindent}{1em}
+\setlength{\cftsubsecindent}{2em}
 
-% Custom name for ToC LoT LoF Appendix 
-\renewcommand{\contentsname}{Daftar Isi}
-\renewcommand{\listfigurename}{Daftar Gambar}
-\renewcommand{\listtablename}{Daftar Tabel}
-\renewcommand{\appendixname}{Apendiks}
+% LoF formatting
+\setlength{\cftfigindent}{0em}
+\setlength{\cftfignumwidth}{3em}
+\setlength{\cftbeforefigskip}{2pt}
 
-% ================== SETTING of CHAPTER NAME & TITLES in Main Document =======================
-% Centering chapter titles and make it one line
-\titleformat{\chapter} % command to format
-[block] % shape: hang, display, block, frame etc
-{\sffamily\Huge\bfseries\centering}  % format of label + chapter title
-{\chaptertitlename\ \thechapter.} % add dot label "Chapter 1."
-{0.5cm} % separation label - chapter title
-{} % code before
+% LoT formatting
+\setlength{\cfttabindent}{0em}
+\setlength{\cfttabnumwidth}{3em}
+\setlength{\cftbeforetabskip}{2pt}
 
-% To change format the chapter name  
-\renewcommand{\chaptername}{제:}				% prefix, before number of chapter
-\renewcommand{\thechapter}{\arabic{chapter}장}	% suffix, after number of chapter
+% Section-list display names  ← edit these to match your language
+\renewcommand{\contentsname}{Table of Contents}   % or 목차
+\renewcommand{\listfigurename}{List of Figures}   % or 그림 목록
+\renewcommand{\listtablename}{List of Tables}     % or 표 목록
+\renewcommand{\appendixname}{Appendix}            % or 부록
 
-% Format tittles with SANS-SERIF and dot suffix for section and subsection
+
+% ============================================
+% CHAPTER & SECTION TITLE FORMATTING
+% ============================================
+
+% Chapter heading style
+\titleformat{\chapter}
+  [block]
+  {\sffamily\Huge\bfseries\centering}
+  {\chaptertitlename\ \thechapter.}
+  {0.5cm}
+  {}
+
+% Chapter numbering format shown in headings
+% Example output: "제: 1장  Chapter Title"
+\renewcommand{\chaptername}{제:}                     % prefix before number
+\renewcommand{\thechapter}{\arabic{chapter}장}       % suffix after number
+
+% Section / subsection heading styles
 \titleformat{\section}{\sffamily\large\bfseries}{\thesection.}{1em}{}
 \titleformat{\subsection}{\sffamily\normalsize\bfseries}{\thesubsection.}{1em}{}
 
-% Spacing for chapters and sections
-\titlespacing*{\chapter}{0cm}{0cm}{0.5cm}
-\titlespacing*{\section}{0cm}{1cm}{0.5cm}
+% Vertical spacing around headings
+% \titlespacing*{cmd}{left}{before}{after}
+\titlespacing*{\chapter}   {0cm}{0cm}{0.5cm}
+\titlespacing*{\section}   {0cm}{1cm}{0.5cm}
 \titlespacing*{\subsection}{0cm}{1cm}{0.5cm}
 
-%\titlespacing{\chapter or \section or \subsection} explanation:
-%{1st} % left of the label + title
-%{2nd} % vertical space before the title
-%{3rd} % vertical space after title
 
-% ================== SETTING of Hyperlink =======================
+% ============================================
+% HYPERLINK COLORS
+% ============================================
 \hypersetup{
-colorlinks=true,	  % no colored links box (for printing)
-linkcolor=blue,       % Internal links (TOC, references) default is black
-citecolor=blue,       % Citations for References when use \cite
-urlcolor=blue         % Web URLs
+  colorlinks = true,
+  linkcolor  = blue,   % TOC, internal cross-references
+  citecolor  = blue,   % \cite{}
+  urlcolor   = blue    % \url{} and \href{}
 }
 
-% ================== PAGE NUMBER FORMATTING =======================
 
-% Roman numerals for front matter
+% ============================================
+% PAGE NUMBER HELPERS
+% ============================================
+
+% Call \frontmatterpagenumbers at the start of frontmatter
 \newcommand{\frontmatterpagenumbers}{
-	\pagenumbering{roman}
-	\setcounter{page}{1}
+  \pagenumbering{roman}
+  \setcounter{page}{1}
 }
 
-% Arabic numerals for main content
+% Call \mainmatterpagenumbers at the start of chapter 1
 \newcommand{\mainmatterpagenumbers}{
-	\clearpage
-	\pagenumbering{arabic}
-	\setcounter{page}{1}
+  \clearpage
+  \pagenumbering{arabic}
+  \setcounter{page}{1}
 }
 
-% Header and footer style, also for pagenumber. Learn manually by yourself if you want custom it :)
 
-% Plain style for chapter pages
-\fancypagestyle{plain}{        % Requires fancyhdr package
-	\fancyhf{}                 % Clear all            
-	\fancyfoot[C]{\thepage}    % centering page number
-    %\fancyhead[LE,RO]{\thepage}  % Page numbers outer edge
-    %\fancyhead[LO]{\leftmark}    % Chapter name left on odd
-    %\fancyhead[RE]{\rightmark}   % Section name right on even
-	\renewcommand{\headrulewidth}{0pt}   % For chapter pages
-	\renewcommand{\footrulewidth}{0pt}   % For chapter pages
+% ============================================
+% HEADER / FOOTER STYLE  (fancyhdr)
+% ============================================
+
+% Plain style — used automatically on first page of each chapter
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
 }
 
-% Configure fancy settings
+% Default fancy style — all other pages
 \fancyhf{}
-%\fancyhead[C]{\thepage}
-%\fancyhead[LE,RO]{\thepage}
 \fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth}{0pt}   % For normal pages
-\renewcommand{\footrulewidth}{0pt}   % For normal pages
-
-% Apply fancy style for normal pages from  Built-in LaTeX function
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 \pagestyle{fancy}
 
-%\pagestyle{empty}     % Use empty style (no headers/footers)
-%\pagestyle{plain}     % Use plain style (page numbers only)
-%\pagestyle{headings}  % Use headings style (chapter names in header)
+% Uncomment any of these for header content:
+%\fancyhead[LE,RO]{\thepage}     % page number at outer edge (twoside)
+%\fancyhead[LO]{\leftmark}       % chapter name on odd pages
+%\fancyhead[RE]{\rightmark}      % section name on even pages
 
-% ========== Optional TOC/LOF/LOT start on right page (twoside) ==========
+% Other built-in page styles (no fancyhdr needed):
+%\pagestyle{empty}     % no headers or footers
+%\pagestyle{plain}     % page number at bottom center only
+%\pagestyle{headings}  % chapter/section names in header automatically
+
+
+% ============================================
+% TOC/LOF/LOT: START ON RIGHT PAGE (twoside)
+% ============================================
+% These wrappers add \cleardoublepage before each list,
+% ensuring they always open on a right-hand page in twoside mode.
+% Safe to keep even in oneside mode (acts like \clearpage).
+
 \let\oldtableofcontents\tableofcontents
 \renewcommand{\tableofcontents}{\cleardoublepage\oldtableofcontents}
 
@@ -196,10 +287,18 @@ urlcolor=blue         % Web URLs
 \let\oldlistoftables\listoftables
 \renewcommand{\listoftables}{\cleardoublepage\oldlistoftables}
 
-% ================== THESIS INFORMATION VARIABLES =======================
-\newcommand{\thesistitle}{My Thesis Title Here \\ (한국어)}
+
+% ============================================
+% DOCUMENT INFORMATION VARIABLES
+% ============================================
+% Edit these once — used across covers, frontmatter, approval sheet, etc.
+
+\newcommand{\thesistitleEn}{My Thesis Title Here}
+\newcommand{\thesistitleKr}{한국어 제목}
+\newcommand{\thesistitle}{\thesistitleEn \\[0.5\baselineskip] \thesistitleKr}
+\newcommand{\supervisorEn}{My Professor}
+\newcommand{\supervisorKr}{박 이 김}
 \newcommand{\thesisauthor}{My Name}
-\newcommand{\supervisor}{My Professor}
 \newcommand{\university}{My University Name}
 \newcommand{\department}{My Department of Your Field}
 \newcommand{\degree}{Doctor of Philosophy}
