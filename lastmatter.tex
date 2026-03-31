@@ -1,0 +1,82 @@
+\cleardoublepage % or \clearpage for oneside
+
+% ============================================
+% APPENDICES (Optional)
+% ============================================	
+\appendix	
+% Add commands directly to TOC file to custom prefic in ToC for appendix
+\addtocontents{toc}{\protect\renewcommand{\protect\cftchappresnum}{Apx }}
+\addtocontents{toc}{\protect\setlength{\protect\cftchapnumwidth}{1.5cm}}
+
+\chapter{Additional Data}
+
+Include supplementary material here. These are simple manual nomenclatures:
+
+\section*{Symbols}
+\begin{tabular}{ll}
+$a$ & Acceleration \\
+$v$ & Velocity \\
+$m$ & Mass \\
+$F$ & Force \\
+\end{tabular}
+
+\section*{Abbreviations}
+\begin{tabular}{ll}
+DNA & Deoxyribonucleic Acid \\
+NASA & National Aeronautics and Space Administration \\
+PhD & Doctor of Philosophy \\
+\end{tabular}
+
+\chapter{Code Listings}
+\begin{spacing}{1.5}
+    Include code or other technical details here. This is the main font (Times New Roman) - used for body text.
+    \textsf{This is sans-serif (Arial) - used for headings.}	
+    \texttt{This is monospace (Courier New) - used for code.}\par
+    
+    % Main text uses \setmainfont and \setmainhangulfont
+    \noindent This is English in Times New Roman. 이것은 바탕체 한글입니다.\\
+    % Sans-serif uses \setsansfont and \setsanshangulfont
+    \textsf{This is English in Arial. 이것은 맑은 고딕 한글입니다.}\\
+    % Monospace uses \setmonofont and \setmonohangulfont
+    \texttt{This is code. 이것은 코딩 폰트입니다.}\par
+    
+  \begin{spacing}{2}
+    \noindent{\tiny Tiny text (6pt)}\\
+    {\scriptsize Scriptsize text (8pt)}\\
+    {\footnotesize Footnotesize text (10pt)}\\
+    {\small Small text (11pt)}\\
+    \normalsize Normal text (12pt)\\
+    {\large Large text (14pt)}\\
+    {\Large Large text (17pt)}\\
+    {\LARGE LARGE text (20pt)}\\
+    {\huge Huge text (25pt)}\\
+    {\Huge Huge text (25pt)}\par
+  \end{spacing}
+    
+    % Custom sizes \fontsize{size}{baseline skip}\selectfont
+    \noindent{\fontsize{15pt}{18pt}\selectfont Custom 15pt}\\
+    {\fontsize{22pt}{26pt}\selectfont Custom 22pt}\\
+    {\fontsize{30pt}{36pt}\selectfont Custom 30pt}\par
+\end{spacing}
+
+% ============================================
+% ABSTRACT in HANGEUL
+% ============================================	
+\newpage	
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{국문초록}
+\vspace*{-1.5cm}
+\begin{center}
+{\LARGE\bfseries (\thesistitleKr)}
+\\[3\baselineskip]
+{\LARGE {\bfseries \thesisauthor }}
+\\[2\baselineskip]
+{\large 전남대학교 대학원 OO 학과\\[0.5\baselineskip] (지도교수 : \supervisorKr)}
+\\[3\baselineskip]
+\end{center}
+
+{\Large \noindent {\bfseries (국문초록) }\par}
+초록을 여기에 입력하세요. 논문의 요약은 일반적으로 150--350단어 분량으로, 문제, 방법론, 결과, 결론을 간결하게 설명해야 합니다.
+
+\noindent\textbf{핵심어:} 첫 키워드, 두 번째 키워드, ...

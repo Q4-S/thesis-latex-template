@@ -1,16 +1,13 @@
+\cleardoublepage % or \clearpage for oneside
+\mainmatterpagenumbers % ===>>>>>> switch page number to Arabic numerals
+
 % ============================================
 % CHAPTER 1: INTRODUCTION
 % ============================================	
-\newpage 
-% or \clearpage for oneside
-\cleardoublepage
-% ===>>>>>> switch page number to Arabic numerals
-\mainmatterpagenumbers
-
 \chapter{Pendahuluan}
 
-한국어 텍스트 \cite{reference1}. This is the introduction to your thesis \cite{reference2}. Here, you would discuss the background, motivation, and objectives of your research. 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+한국어 텍스트 \cite{reference1}. This is the introduction to your thesis \cite{reference2}. Here, you will discuss the background, motivation, and objectives of your research. 
+A modern dissertation (or thesis) LaTeX template using pdfLatex or XeLaTeX (app.tex as the main file), inspired by the Chonnam National University template. Fully customizable and clickable table of contents (ToC), list of figures (LoF), list of tables (LoT), and appendices; supports one or two-sided printing and Korean/Hangeul fonts. You could use it to write any books in English, Indonesian, or Korean. You are most welcome to contribute or suggest any improvements at https://github.com/Q4-S/thesis-latex-template
 
 \section{Latar Belakang}
 
@@ -40,13 +37,13 @@ Discuss the theoretical foundations of your work.
 Survey-related research and how your work fits into the existing literature.
 
 \begin{figure}[h!]
-    \centering
-    \includegraphics[draft, width=0.3\textwidth, height=5cm]{nonexistent-image.png}
+    \centering % replace nonexist.png with any real image file for example figure.png
+    \includegraphics[width=0.3\textwidth, height=1cm]{nofile.png}
     \caption{Figure from graphicx package with demo option}
-    \label{fig:demo}
+    \label{fig:demo} % CHANGE \usepackage[demo]{graphicx} in setting.tex for real file
 \end{figure}
 
-As seen in Figure~\ref{fig:demo}, the `demo` option replaces the actual image with a black rectangle. \textbf{$\backslash$usepackage[demo]{graphicx}}: This line loads the graphicx package and activates its demo option. When demo is enabled, \texttt{$\backslash$includegraphics} commands will not attempt to load actual image files. Even if nonexistent-image.png does not exist, the demo option ensures a placeholder rectangle is generated, allowing you to compile and visualize the layout of your document without requiring the actual image files. This is particularly useful during the document drafting phase to check figure placement and sizing before all images are finalized or available. Other methods, which do not require any package, are illustrated in Figures~\ref {fig:example1} (upper label) and~\ref {fig:example2}.
+As seen in Figure~\ref{fig:demo}, the `demo` option replaces the actual image with a black rectangle. $\backslash$\textbf{usepackage[demo]{graphicx}}: This code activates its demo option. When demo is enabled, \texttt{$\backslash$includegraphics} commands will not attempt to load actual image files. Even if nofile.png does not exist, the demo option ensures a placeholder rectangle is generated, allowing you to compile and visualize the layout of your document without requiring the actual image files. This is particularly useful during the document drafting phase to check figure placement and sizing before all images are finalized or available. Other methods, which do not require any package, are illustrated in Figures~\ref {fig:example1} (upper label; click from LoF to know the effect) and~\ref {fig:example2}.
 
 % ============================================
 % CHAPTER 3: METHODOLOGY
@@ -104,9 +101,9 @@ Detailed results for category 1.
 \begin{figure}[ht]
     \centering
     \label{fig:example1}
-    % \includegraphics[width=0.8\textwidth]{figure1.png}
-    \rule{0.8\textwidth}{2in}
     \caption{Placeholder figure using rule}
+    \rule{0.8\textwidth}{2in}  % delete/comment this line & uncomment figure.png line for real image
+    % \includegraphics[width=0.8\textwidth]{figure.png}
 \end{figure}
 
 \subsection{Result Category 2}
@@ -125,9 +122,9 @@ Interpret and discuss your results.
 Explain what your results mean. 
 % Example figure
 \begin{figure}[ht]
-    \centering
-    % \includegraphics[width=0.8\textwidth]{figure1.png}
-    \fbox{\parbox[c][1cm][c]{0.5\textwidth}{\centering\vspace{3in}Figure placeholder}}
+    \centering  % delete/comment the line \fbox... & uncomment figure.png line for real image
+    \fbox{\parbox[c][2cm][c]{0.5\textwidth}{\centering{Figure 2cm fixed height}}}
+    % \includegraphics[width=0.8\textwidth]{figure.png}
     \caption{Placeholder figure using fbox}
     \label{fig:example2}
 \end{figure}
@@ -188,94 +185,3 @@ Suggest directions for future research.
 
 % list from file reference.bib and update setting.tex to configure
 \printbibliography[heading=bibintoc, title={Daftar Pustaka}]  % Put in to ToC
-
-% ============================================
-% APPENDICES (Optional)
-% ============================================	
-\appendix	
-% Add commands directly to TOC file to custom prefic in ToC for appendix
-\addtocontents{toc}{\protect\renewcommand{\protect\cftchappresnum}{Apx }}
-\addtocontents{toc}{\protect\setlength{\protect\cftchapnumwidth}{1.5cm}}
-
-\chapter{Additional Data}
-
-Include supplementary material here. These are simple manual nomenclatures:
-
-\section*{Symbols}
-\begin{tabular}{ll}
-$a$ & Acceleration \\
-$v$ & Velocity \\
-$m$ & Mass \\
-$F$ & Force \\
-\end{tabular}
-
-\section*{Abbreviations}
-\begin{tabular}{ll}
-DNA & Deoxyribonucleic Acid \\
-NASA & National Aeronautics and Space Administration \\
-PhD & Doctor of Philosophy \\
-\end{tabular}
-
-\chapter{Code Listings}
-
-Include code or other technical details here. This is main font (Times New Roman) - used for body text.
-\textsf{This is sans-serif (Arial) - used for headings.}	
-\texttt{This is monospace (Courier New)-used for code.}
-
-% Main text uses \setmainfont and \setmainhangulfont
-This is English in Times New Roman. 이것은 바탕체 한글입니다.
-
-% Sans-serif uses \setsansfont and \setsanshangulfont
-\textsf{This is English in Arial. 이것은 맑은 고딕 한글입니다.}
-
-% Monospace uses \setmonofont and \setmonohangulfont
-\texttt{This is code. 이것은 코딩 폰트입니다.}
-
-{\tiny Tiny text (6pt)}
-
-{\scriptsize Scriptsize text (8pt)}
-
-{\footnotesize Footnotesize text (10pt)}
-
-{\small Small text (11pt)}
-
-\normalsize Normal text (12pt)
-
-{\large Large text (14pt)}
-
-{\Large Large text (17pt)}
-
-{\LARGE LARGE text (20pt)}
-
-{\huge Huge text (25pt)}
-
-{\Huge Huge text (25pt)}
-
-% Custom sizes \fontsize{size}{baseline skip}\selectfont
-{\fontsize{15pt}{18pt}\selectfont Custom 15pt}
-
-{\fontsize{22pt}{26pt}\selectfont Custom 22pt}
-
-{\fontsize{30pt}{36pt}\selectfont Custom 30pt}
-
-% ============================================
-% ABSTRACT in HANGEUL
-% ============================================	
-\newpage	
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{국문초록}
-\vspace*{0cm}
-\begin{center}
-{\LARGE\bfseries (\thesistitleKr)}
-\\[3\baselineskip]
-{\LARGE {\bfseries \thesisauthor }}
-\\[2\baselineskip]
-{\large 전남대학교 대학원 OO 학과\\[0.5\baselineskip] (지도교수 : \supervisorKr)}
-\\[3\baselineskip]
-\end{center}
-
-{\Large \noindent {\bfseries (국문초록) }\par}
-초록을 여기에 입력하세요. 논문의 요약은 일반적으로 150 - 350단어 분량으로, 문제, 방법론, 결과, 결론을 간결하게 설명해야 합니다.
-
-\noindent\textbf{핵심어:} 첫 키워드, 두 번째 키워드, ...

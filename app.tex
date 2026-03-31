@@ -47,9 +47,10 @@
 % to avoid "unclosed \begin{CJK} found at close group }" errors.
 \ifxelatex\else\begin{CJK}{UTF8}{mj}\fi
  
-  \input{covers.tex}       % ALL PAGES without pagenumber
-  \input{frontmatter.tex}  % ALL PAGES {roman pagenumber}
-  \input{mainmatter.tex}   % ALL PAGES [Arabic pagenumber]
+    \input{covers.tex}       % ALL PAGES without pagenumber  
+    \input{frontmatter.tex}  % ALL PAGES {roman pagenumber}
+    \input{mainmatter.tex}   % ALL PAGES [Arabic pagenumber]    
+    \input{lastmatter}       % Continue mainmatter with appendices
  
 % Close CJK environment (pdfLaTeX only)
 \ifxelatex\else\clearpage\end{CJK}\fi

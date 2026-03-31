@@ -74,6 +74,7 @@
 % ============================================
 % SHARED PACKAGES  (work with both compilers)
 % ============================================
+\hbadness=9999    % only warn if badness hits true maximum
 
 % --- Page geometry ---
 \usepackage[
@@ -88,7 +89,7 @@
 
 % --- Spacing ---
 \usepackage{setspace}
-\singlespacing   % options: \singlespacing \onehalfspacing \doublespacing \setstretch{1.25}
+\doublespacing   % options: \singlespacing \onehalfspacing \doublespacing \setstretch{1.25}
 
 \setlength{\parskip}{0.5cm}     % space between paragraphs
 \setlength{\parindent}{0.7cm}   % paragraph indentation
@@ -97,7 +98,7 @@
                                 % remove this package to disable that behavior
 
 % --- Graphics ---
-% \usepackage{graphicx}         % normal mode — use real image files
+%\usepackage{graphicx}          % normal mode — use real image files
 \usepackage[demo]{graphicx}     % demo mode   — black rectangles as placeholders
                                 % switch to the line above once images are ready
 
@@ -139,8 +140,8 @@
 % Chapter entries in TOC
 \renewcommand{\cftchapfont}{\bfseries}           % Bold chapter entries
 \renewcommand{\cftchapdotsep}{\cftdotsep}        % Add dots for chapters
-\setlength{\cftbeforechapskip}{5pt}              % Space between chapters
 \renewcommand{\cftchappagefont}{\bfseries}       % Bold page numbers
+\setlength{\cftbeforechapskip}{5pt}              % Vertical space between chapters
 
 % Chapter number prefix/suffix in TOC
 % NOTE: \cftchappresnum shows in TOC only.
@@ -170,12 +171,12 @@
 % LoF formatting
 \setlength{\cftfigindent}{0em}
 \setlength{\cftfignumwidth}{3em}
-\setlength{\cftbeforefigskip}{2pt}
+\setlength{\cftbeforefigskip}{0.5pt}
 
 % LoT formatting
 \setlength{\cfttabindent}{0em}
 \setlength{\cfttabnumwidth}{3em}
-\setlength{\cftbeforetabskip}{2pt}
+\setlength{\cftbeforetabskip}{0.5pt}
 
 % Edit frontmatter.tex to disable showing own page of LoC, LoF, or LoT
 % Section-list display names  ← edit these to match your language
@@ -225,7 +226,7 @@
 
 % Vertical spacing around headings
 % \titlespacing*{cmd}{left}{before}{after}
-\titlespacing*{\chapter}   {0cm}{0cm}{0.5cm}
+\titlespacing*{\chapter}   {0cm}{-1.5cm}{0.5cm}
 \titlespacing*{\section}   {0cm}{1cm}{0.5cm}
 \titlespacing*{\subsection}{0cm}{1cm}{0.5cm}
 
@@ -289,13 +290,7 @@
 %\pagestyle{headings}  % chapter/section names in header automatically
 
 
-% ============================================
-% TOC/LOF/LOT: START ON RIGHT PAGE (twoside)
-% ============================================
-% These wrappers add \cleardoublepage before each list,
-% ensuring they always open on a right-hand page in twoside mode.
-% Safe to keep even in oneside mode (acts like \clearpage).
-
+% ========== Optional TOC/LOF/LOT start on right page (twoside) ==========
 \let\oldtableofcontents\tableofcontents
 \renewcommand{\tableofcontents}{\cleardoublepage\oldtableofcontents}
 
@@ -304,7 +299,6 @@
 
 \let\oldlistoftables\listoftables
 \renewcommand{\listoftables}{\cleardoublepage\oldlistoftables}
-
 
 % ============================================
 % DOCUMENT INFORMATION VARIABLES
